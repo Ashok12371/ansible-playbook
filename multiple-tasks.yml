@@ -6,3 +6,4 @@
         - wget
         - default-jdk
         - apache2 
+        - nginx
