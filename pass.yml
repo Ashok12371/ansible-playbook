@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: latest
+    - name: passing the task
+      pause:
+        prompt: click on the y
+    - name: install default-jdk
+      apt: 
+        name: default-jdk
+        state: latest
+    - name: install wget
+      apt:
+        name: wget
+        state: latest

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  vars:
+    rehlpkg: httpd
+    ubuntupkg: apache2
+  tasks:
+    - name: install apache websever on RHEL
+      yum: pkg={{ rehlpkg}} state=installed
+      when: ansible_os_family=="Redhat"
+      when: ansible_facts['distribution'] == 'RHEL'
+      notify: starting rehlpkg
+    - name: installing ansible websever on ubuntu
+      apt: pkg={{ ubuntupkg}} state=latest
+      when: ansible_facts['distribution'] == 'Debion'
+      when: ansible_facts['distribution'] == 'Ubuntu'
+      #when: ansible_os_family=="Debion"
+      notify: starting ubuntupkg
+  handlers:
+    - name: starting rehlpkg
+      service: name={{ rehlpkg }} state=started
+    - name: starting ubuntupkg
+      service: name={{ ubuntupkg }} state=started

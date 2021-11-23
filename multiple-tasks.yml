@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - name: multiple packages at time
+      apt: name={{ item }} state=latest
+      with_items:
+        - wget
+        - default-jdk
+        - apache2 
